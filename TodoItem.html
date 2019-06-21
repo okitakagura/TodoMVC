@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <title>Todos</title>
+    <link rel="stylesheet" href="TodoItem.css">
+</head>
+<body>
+<div class="todoapp">
+    <header class="header">
+        <h1>Todos</h1>
+    </header>
+    <table class="new-list">
+        <tr>
+            <td>
+                <input class="item-todo" type="text" placeholder="What" autofocus>
+            </td>
+            <td>
+                <select class="item-type" id="new-type">
+                    <option id="study" value="study">Study</option>
+                    <option id="entertainment" value="entertainment">Entertainment</option>
+                    <option id="work" value="work">Work</option>
+                    <option id="life" value="life">Life</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="item-detail" type="text" placeholder="Detail" autofocus>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="item-data" type="date" value="2019-06-22"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit" class="submitbutton">Submit</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+        <script src="model.js"></script>
+        <script src="provider-localStorage.js"></script>
+        <script src="TodoItem.js"></script>
+</body>
+</html>

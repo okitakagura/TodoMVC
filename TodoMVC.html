@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Todos</title>
+  <link rel="stylesheet" href="TodoMVC.css">
+</head>
+<body>
+  <div class="todoapp">
+    <header class="header">
+      <h1>Todos</h1>
+    </header>
+    <!-- Add New Item -->
+    <table class="new-list">
+      <tr>
+        <td>
+          <input class="new-todo" type="text" placeholder="What" autofocus>
+        </td>
+        <td>
+          <select class="new-type" id="new-type">
+            <option id="study" value="study">Study</option>
+            <option id="entertainment" value="entertainment">Entertainment</option>
+            <option id="work" value="work">Work</option>
+            <option id="life" value="life">Life</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input class="new-data" type="date" value="2019-06-22"/>
+        </td>
+        <td>
+          <button type="submit" class="addbutton">Add</button>
+        </td>
+      </tr>
+    </table>
+    <section class="main">
+      <input class="toggle-all" type="checkbox">
+      <!-- Show List -->
+      <div class="times">
+        <ul class="list" id="list"></ul>
+      </div>
+
+      <footer class="footer">
+        <span class="todo-count"></span>
+        <ul class="filters">
+          <li><a class="selected" style="cursor:pointer;">All</a></li>
+          <li><a class="" style="cursor:pointer;">Active</a></li>
+          <li><a class="" style="cursor:pointer;">Completed</a></li>
+        </ul>
+        <button class="clear-completed">Clear completed</button>
+      </footer>
+    </section>
+  </div>
+  <script src="model.js"></script>
+  <script src="provider-localStorage.js"></script>
+  <script src="TodoMVC.js"></script>
+</body>
+</html>

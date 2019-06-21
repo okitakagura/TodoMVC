@@ -1,0 +1,134 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 100%;
+    vertical-align: baseline;
+    font-family: inherit;
+    font-weight: inherit;
+    color: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.4em;
+    /*background: #34495e;*/
+    background:  #E3E3D8;
+    color: #4d4d4d;
+    margin: 0 auto;
+    min-width: 300px;
+    max-width: 700px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 300;
+}
+
+.submitbutton{
+    margin: 10px 10px;
+    padding: 5px;
+    border: 1px solid #af5b5e;
+    border-radius: 5px;
+    text-align: right;
+}
+.submitbutton:active{
+    background-color: #af5b5e;
+}
+
+.todoapp {
+    background: #fff;
+    margin: 130px 10px 40px 10px;
+    position: relative;
+    box-shadow: 5px 5px 15px rgba(25,25,25, .5);
+    border-radius: 10px;
+}
+
+
+.todoapp input::-webkit-input-placeholder {
+    font-style: italic;
+    font-weight: 300;
+    color: #e6e6e6;
+}
+
+.todoapp input::-moz-placeholder {
+    font-style: italic;
+    font-weight: 300;
+    color: #e6e6e6;
+}
+
+.todoapp h1 {
+    position: absolute;
+    top: -155px;
+    width: 100%;
+    font-family: "Bodoni 72", Helvetica, Arial, sans-serif;
+    font-size: 100px;
+    font-weight: 700;
+    text-align: center;
+    /*color: rgba(175, 47, 47, 0.15);*/
+    color:white;
+    -webkit-text-rendering: optimizeLegibility;
+    -moz-text-rendering: optimizeLegibility;
+    text-rendering: optimizeLegibility;
+}
+.item-todo, .item-data, .item-detail{
+    border: 1px solid #999;
+    vertical-align: bottom;
+}
+
+.item-todo, .item-type, .item-data, .item-detail{
+    position: relative;
+    margin: 0;
+    width: 100%;
+    font-size: 24px;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: 1.4em;
+    outline: none;
+    color: inherit;
+    padding: 6px;
+    box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.item-todo, .item-detail, .item-data{
+    padding: 5px 5px 5px 60px;
+    border: none;
+    background: rgba(0, 0, 0, 0.003);
+    box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
+}
+.item-type{
+    padding: 5px 5px 5px 8px;
+    border: none;
+    background: rgba(0, 0, 0, 0.003);
+    box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
+}
+.item-type{
+    -webkit-appearance: none;   /* google */
+    -moz-appearance: none;  /* firefox */
+}
+
+@media screen and (max-width:480px){
+
+    .item-todo, .item-data{
+        width: 200px;
+    }
+    .item-data, .item-detail{
+        font-size: 14px;
+    }
+    .item-type{
+        width:120px;
+        font:12px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+}
