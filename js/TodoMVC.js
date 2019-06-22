@@ -16,6 +16,8 @@ var CL_COMPLETED = 'completed';
 var CL_SELECTED = 'selected';
 var recorditem = [];
 var showFlag = 1;
+var searchFlag = 0;
+var searchStr = "";
 function update() {
   model.flush();
   var data = model.data;
@@ -37,9 +39,10 @@ function update() {
     recorditem.push(itemData);
     if (!itemData.completed) activeAmount++;
     if (
-      data.filter == 'All'
+        (data.filter == 'All'
       || (data.filter == 'Active' && !itemData.completed)
-      || (data.filter == 'Completed' && itemData.completed)
+      || (data.filter == 'Completed' && itemData.completed))
+        && (searchFlag == 0 || searchFlag == 1 && itemData.msg.indexOf(searchStr) != -1)
     ) {
       var item = document.createElement('li');
       var id = 'item' + guid++;
@@ -130,7 +133,7 @@ function update() {
         moveEndY = e.touches[0].clientY;
         X = moveEndX - startX;
         Y = moveEndY - startY;
-
+        //touch left
         if(Math.abs(X) > Math.abs(Y) && X >0){
           var myconfirm = confirm("Are you sure to delete it?");
           if(myconfirm == true){
@@ -139,6 +142,7 @@ function update() {
           }
           else return;
         }
+        //touch right
         else if ( Math.abs(X) > Math.abs(Y) && X < 0 ) {
           itemData.completed = !itemData.completed;
           update();
@@ -165,15 +169,15 @@ function update() {
         var itemflag = 0;
         // Sort by time
         for(i = 0; i < recorditem.length - 1;){
-          if(itemData.year < recorditem[i].year){
+          if(itemData.year > recorditem[i].year){
             i++;
           }
           else if(itemData.year == recorditem[i].year){
-            if(itemData.month < recorditem[i].month){
+            if(itemData.month > recorditem[i].month){
               i++;
             }
             else if(itemData.month == recorditem[i].month){
-              if(itemData.day < recorditem[i].day){
+              if(itemData.day > recorditem[i].day){
                 i++;
               }
               else{
@@ -272,7 +276,25 @@ window.onload = function() {
       }
       update();
     });
+
+    var searchButton = document.getElementById("searchbutton");
+    searchButton.addEventListener('click',function () {
+      searchFlag = 1;
+      searchStr = $('.search').value;
+      update();
+    },false);
+
+
+
+
+
+
     addButton.addEventListener('click', function() {
+      //cancel search
+      searchFlag = 0;
+      searchStr = "";
+      $('.search').value = searchStr;
+
       data.msg = newTodo.value;
       data.type = document.getElementById("new-type").value;
       data.year = newData.value.split("-")[0];
@@ -289,15 +311,15 @@ window.onload = function() {
       var flag = 0;
       // Sort by time
       for(i = 0; i < data.items.length;){
-        if(data.year < data.items[i].year){
+        if(data.year > data.items[i].year){
           i++;
         }
         else if(data.year == data.items[i].year){
-          if(data.month < data.items[i].month){
+          if(data.month > data.items[i].month){
             i++;
           }
           else if(data.month == data.items[i].month){
-            if(data.day < data.items[i].day){
+            if(data.day > data.items[i].day){
               i++;
             }
             else{

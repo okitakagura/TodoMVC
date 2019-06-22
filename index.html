@@ -10,11 +10,24 @@
   <div class="todoapp">
     <header class="header">
       <h1>Todos</h1>
-      <select class="new-type" id="show-type">
-        <option id="bytime" value="bytime">时间轴</option>
-        <option id="bytype" value="bytype">重要性</option>
-
-      </select>
+      <table>
+        <tr>
+          <td>
+            <select class="new-type" id="show-type">
+              <option id="bytime" value="bytime">时间轴</option>
+              <option id="bytype" value="bytype">重要性</option>
+            </select>
+          </td>
+          <td>
+            <div class="secontainer">
+                <input type="text" class="search" placeholder="Search">
+            </div>
+          </td>
+          <td>
+            <button type="button" id="searchbutton" class="searchbutton">Search</button>
+          </td>
+        </tr>
+      </table>
     </header>
     <!-- Add New Item -->
     <table class="new-list">

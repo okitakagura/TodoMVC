@@ -1,7 +1,7 @@
 window.model = {
   data: {
     items: [
-      // {msg:'',  type:'', completed: false, year:'', month:'', day:''}
+      // {msg:'', type:'', detail:'', completed: false, year:'', month:'', day:''}
     ],
     msg: '',
     type:'',
@@ -12,8 +12,4 @@ window.model = {
     filter: 'All'
   },
   TOKEN: 'TodoMVC'
-  
-  // data provider interface
-  // init: null
-  // flush: null
 };
