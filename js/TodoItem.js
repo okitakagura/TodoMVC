@@ -37,32 +37,32 @@ window.onload = function() {
     newtype.value = data.items[index].type;
     var type = newtype.value;
     switch (type) {
-        case "study":
+        case "impurg":
             document.getElementById("new-type").style.color = "#ccc1ff";
             break;
-        case "entertainment":
+        case "impnurg":
             document.getElementById("new-type").style.color = "#89a3b2";
             break;
-        case "work":
+        case "nimpurg":
             document.getElementById("new-type").style.color = "#ff9776";
             break;
-        case "life":
+        case "nimpnurg":
             document.getElementById("new-type").style.color = "#e2bebe";
             break;
     }
     newtype.addEventListener('change', function () {
         var type = newtype.value;
         switch (type) {
-            case "study":
+            case "impurg":
                 document.getElementById("new-type").style.color = "#ccc1ff";
                 break;
-            case "entertainment":
+            case "impnurg":
                 document.getElementById("new-type").style.color = "#89a3b2";
                 break;
-            case "work":
+            case "nimpurg":
                 document.getElementById("new-type").style.color = "#ff9776";
                 break;
-            case "life":
+            case "nimpnurg":
                 document.getElementById("new-type").style.color = "#e2bebe";
                 break;
         }
@@ -98,6 +98,6 @@ window.onload = function() {
         data.day = '';
         model.flush();
 
-        window.location.href = "TodoMVC.html";
+        window.location.href = "index.html";
     },false);
 };

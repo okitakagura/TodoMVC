@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
     <title>Todos</title>
-    <link rel="stylesheet" href="TodoItem.css">
+    <link rel="stylesheet" href="css/TodoItem.css">
 </head>
 <body>
 <div class="todoapp">
@@ -18,10 +18,10 @@
             </td>
             <td>
                 <select class="item-type" id="new-type">
-                    <option id="study" value="study">Study</option>
-                    <option id="entertainment" value="entertainment">Entertainment</option>
-                    <option id="work" value="work">Work</option>
-                    <option id="life" value="life">Life</option>
+                    <option id="impurg" value="impurg">重要紧急</option>
+                    <option id="impnurg" value="impnurg">重要不紧急</option>
+                    <option id="nimpurg" value="nimpurg">不重要紧急</option>
+                    <option id="nimpnurg" value="nimpnurg">不重要不紧急</option>
                 </select>
             </td>
         </tr>
@@ -43,8 +43,8 @@
     </table>
 </div>
 
-        <script src="model.js"></script>
-        <script src="provider-localStorage.js"></script>
-        <script src="TodoItem.js"></script>
+        <script src="js/model.js"></script>
+        <script src="js/provider-localStorage.js"></script>
+        <script src="js/TodoItem.js"></script>
 </body>
 </html>

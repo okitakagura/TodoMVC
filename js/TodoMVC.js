@@ -15,14 +15,23 @@ var guid = 0;
 var CL_COMPLETED = 'completed';
 var CL_SELECTED = 'selected';
 var recorditem = [];
-
+var showFlag = 1;
 function update() {
   model.flush();
   var data = model.data;
   
   var activeAmount = 0;
-  var list = $('.list');
-  list.innerHTML = '';
+  var timelist = document.getElementById("list");
+  timelist.innerHTML = '';
+  var impurglist = document.getElementById("ImpUrglist");
+  impurglist.innerHTML = '';
+  var impNurglist = document.getElementById("ImpNurglist");
+  impNurglist.innerHTML = '';
+  var Nimpurglist = document.getElementById("NimpUrglist");
+  Nimpurglist.innerHTML = '';
+  var NimpNurglist = document.getElementById("NimpNurglist");
+  NimpNurglist.innerHTML = '';
+
   recorditem = [];
   data.items.forEach(function(itemData, index) {
     recorditem.push(itemData);
@@ -35,36 +44,70 @@ function update() {
       var item = document.createElement('li');
       var id = 'item' + guid++;
 
+      if(showFlag == 0){
+        item.setAttribute('id', id);
+        if (itemData.completed) item.classList.add(CL_COMPLETED);
+        var itemview = document.createElement('div');
+        itemview.className = 'view';
+        var itemcontent = document.createElement('div');
+          itemcontent.innerHTML = [
+            '<label class="todo-label">' + itemData.msg + '</label>',
+          ].join('');
 
-      item.setAttribute('id', id);
-      if (itemData.completed) item.classList.add(CL_COMPLETED);
-      var itemview = document.createElement('div');
-      itemview.className = 'view';
-      var itemtoggle = document.createElement('input');
-      itemtoggle.className = 'toggle';
-      itemtoggle.type = 'checkbox';
-      var itemcontent = document.createElement('div');
-      itemcontent.innerHTML = [
-        '<b></b>',
-        '<span>' + itemData.year+'-'+itemData.month+'-'+itemData.day+'</span>',
-        '<label class="todo-label">' + itemData.msg + '</label>',
-      ].join('');
-      var itemdelete = document.createElement('button');
-      itemdelete.className = 'destroy';
-      itemview.appendChild(itemtoggle);
-      itemview.appendChild(itemcontent);
-      itemview.appendChild(itemdelete);
-      item.appendChild(itemview);
+
+        itemview.appendChild(itemcontent);
+        item.style.margin = "25px 15px 25px 15px";
+        item.appendChild(itemview);
+      }
+      else{
+        item.setAttribute('id', id);
+        if (itemData.completed) item.classList.add(CL_COMPLETED);
+        var itemview = document.createElement('div');
+        itemview.className = 'view';
+        var itemtoggle = document.createElement('input');
+        itemtoggle.className = 'toggle';
+        itemtoggle.type = 'checkbox';
+        var itemcontent = document.createElement('div');
+        itemcontent.innerHTML = [
+          '<b></b>',
+          '<span>' + itemData.year+'-'+itemData.month+'-'+itemData.day+'</span>',
+          '<label class="todo-label">' + itemData.msg + '</label>',
+        ].join('');
+
+        var itemdelete = document.createElement('button');
+        itemdelete.className = 'destroy';
+        itemview.appendChild(itemtoggle);
+        itemview.appendChild(itemcontent);
+        itemview.appendChild(itemdelete);
+        item.appendChild(itemview);
+
+        var itemToggle = item.querySelector('.toggle');
+        itemToggle.checked = itemData.completed;
+        itemToggle.addEventListener('change', function() {
+          itemData.completed = !itemData.completed;
+          update();
+        }, false);
+
+        item.querySelector('.destroy').addEventListener('click', function() {
+          var myconfirm = confirm("Are you sure to delete it?");
+          if(myconfirm == true){
+            data.items.splice(index, 1);
+            update();
+          }
+          else return;
+        }, false);
+      }
+
 
       var label = itemcontent.querySelector('.todo-label');
       switch (itemData.type) {
-        case "study": label.style.backgroundColor = "#ccc1ff";
+        case "impurg": label.style.backgroundColor = "#ccc1ff";
           break;
-        case "entertainment": label.style.backgroundColor = "#89a3b2";
+        case "impnurg": label.style.backgroundColor = "#89a3b2";
           break;
-        case "work": label.style.backgroundColor = "#ff9776";
+        case "nimpurg": label.style.backgroundColor = "#ff9776";
           break;
-        case "life": label.style.backgroundColor = "#e2bebe";
+        case "nimpnurg": label.style.backgroundColor = "#e2bebe";
           break;
       }
 
@@ -74,21 +117,7 @@ function update() {
       }, function () {
         console.log('touch');
       });
-      var itemToggle = item.querySelector('.toggle');
-      itemToggle.checked = itemData.completed;
-      itemToggle.addEventListener('change', function() {
-        itemData.completed = !itemData.completed;
-        update();
-      }, false);
 
-      item.querySelector('.destroy').addEventListener('click', function() {
-        var myconfirm = confirm("Are you sure to delete it?");
-        if(myconfirm == true){
-          data.items.splice(index, 1);
-          update();
-        }
-        else return;
-      }, false);
 
 
       var startX,startY,moveEndX,moveEndY,X,Y;
@@ -115,21 +144,43 @@ function update() {
           update();
         }
       });
-
-      var i;
-      var itemflag = 0;
-      // Sort by time
-      for(i = 0; i < recorditem.length - 1;){
-        if(itemData.year < recorditem[i].year){
-          i++;
+      if(showFlag == 0){
+        var list;
+        switch (itemData.type) {
+          case "impurg":list = impurglist;
+            break;
+          case "impnurg":list = impNurglist;
+            break;
+          case "nimpurg":list = Nimpurglist;
+            break;
+          case "nimpnurg":list = NimpNurglist;
+            break;
         }
-        else if(itemData.year == recorditem[i].year){
-          if(itemData.month < recorditem[i].month){
+        list.insertBefore(item, list.firstChild);
+      }
+
+      else {
+        var list = timelist;
+        var i;
+        var itemflag = 0;
+        // Sort by time
+        for(i = 0; i < recorditem.length - 1;){
+          if(itemData.year < recorditem[i].year){
             i++;
           }
-          else if(itemData.month == recorditem[i].month){
-            if(itemData.day < recorditem[i].day){
+          else if(itemData.year == recorditem[i].year){
+            if(itemData.month < recorditem[i].month){
               i++;
+            }
+            else if(itemData.month == recorditem[i].month){
+              if(itemData.day < recorditem[i].day){
+                i++;
+              }
+              else{
+                list.insertBefore(item, list.children[i]);
+                itemflag = 1;
+                break;
+              }
             }
             else{
               list.insertBefore(item, list.children[i]);
@@ -143,18 +194,13 @@ function update() {
             break;
           }
         }
-        else{
+
+        if(itemflag == 0){
           list.insertBefore(item, list.children[i]);
-          itemflag = 1;
-          break;
         }
       }
 
-      if(itemflag == 0){
-        list.insertBefore(item, list.children[i]);
-      }
-      //list.insertBefore(item, list.firstChild);
-      //list.appendChild(item);
+
     }
   });
 
@@ -194,18 +240,38 @@ window.onload = function() {
     newtype.addEventListener('change',function () {
       var type = newtype.value;
       switch (type) {
-        case "study":document.getElementById("new-type").style.color = "#ccc1ff";
+        case "impurg":document.getElementById("new-type").style.color = "#ccc1ff";
           break;
-        case "entertainment":document.getElementById("new-type").style.color = "#89a3b2";
+        case "impnurg":document.getElementById("new-type").style.color = "#89a3b2";
           break;
-        case "work":document.getElementById("new-type").style.color = "#ff9776";
+        case "nimpurg":document.getElementById("new-type").style.color = "#ff9776";
           break;
-        case "life":document.getElementById("new-type").style.color = "#e2bebe";
+        case "nimpnurg":document.getElementById("new-type").style.color = "#e2bebe";
           break;
       }
     });
 
+    var showtype = document.getElementById("show-type");
+    if(showtype.value == "bytype"){
+      showFlag = 0;
+      $('.container').style.display = "table";
+    }
+    else {
+      showFlag = 1;
+      $('.container').style.display = "none";
+    }
+    showtype.addEventListener('change',function () {
+      if(showtype.value == "bytype"){
+        showFlag = 0;
+        $('.container').style.display = "table";
 
+      }
+      else{
+        showFlag = 1;
+        $('.container').style.display = "none";
+      }
+      update();
+    });
     addButton.addEventListener('click', function() {
       data.msg = newTodo.value;
       data.type = document.getElementById("new-type").value;

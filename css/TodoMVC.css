@@ -207,6 +207,35 @@ the time point and time display will change color.*/
     font-size:16px;
     line-height:25px;
 }
+.container, .container tbody{
+    width:100%;
+}
+.container td{
+    border: 2px solid whitesmoke;
+    padding-top: 5px;
+    vertical-align: text-top;
+}
+
+.container .list li label {
+    font-size: 13px;
+    white-space: pre-line;
+    word-break: break-all;
+    margin-left: 20px;
+    padding: 10px 10px 10px 10px;
+    display: block;
+    line-height: 1.2;
+    transition: color 0.4s;
+    border: 1px solid rgb(224,224,224);
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 3px 3px 8px rgba(100,100,100, .5);
+}
+
+.container ul li{
+    list-style: none;
+}
+
+
+
 
 .list {
     margin: 0;
@@ -407,6 +436,9 @@ html .clear-completed:active {
     .new-type{
         width:120px;
         font:12px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    .container{
+        font-size: 12px;
     }
 }
 @media (max-width: 430px) {

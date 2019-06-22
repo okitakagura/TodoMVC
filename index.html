@@ -4,12 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>Todos</title>
-  <link rel="stylesheet" href="TodoMVC.css">
+  <link rel="stylesheet" href="css/TodoMVC.css">
 </head>
 <body>
   <div class="todoapp">
     <header class="header">
       <h1>Todos</h1>
+      <select class="new-type" id="show-type">
+        <option id="bytime" value="bytime">时间轴</option>
+        <option id="bytype" value="bytype">重要性</option>
+
+      </select>
     </header>
     <!-- Add New Item -->
     <table class="new-list">
@@ -19,10 +24,10 @@
         </td>
         <td>
           <select class="new-type" id="new-type">
-            <option id="study" value="study">Study</option>
-            <option id="entertainment" value="entertainment">Entertainment</option>
-            <option id="work" value="work">Work</option>
-            <option id="life" value="life">Life</option>
+            <option id="impurg" value="impurg">重要紧急</option>
+            <option id="impnurg" value="impnurg">重要不紧急</option>
+            <option id="nimpurg" value="nimpurg">不重要紧急</option>
+            <option id="nimpnurg" value="nimpnurg">不重要不紧急</option>
           </select>
         </td>
       </tr>
@@ -41,7 +46,28 @@
       <div class="times">
         <ul class="list" id="list"></ul>
       </div>
-
+      <table class="container">
+        <tr>
+          <td class=ImpUrg>
+            <p>重要紧急</p>
+            <ul class="list" id="ImpUrglist"></ul>
+          </td>
+          <td class=ImpNurg>
+            <p>重要不紧急</p>
+            <ul class="list" id="ImpNurglist"></ul>
+          </td>
+        </tr>
+        <tr>
+          <td class=NimpUrg>
+            <p>不重要紧急</p>
+            <ul class="list" id="NimpUrglist"></ul>
+          </td>
+          <td class=NimpNurg>
+            <p>不重要不紧急</p>
+            <ul class="list" id="NimpNurglist"></ul>
+          </td>
+        </tr>
+      </table>
       <footer class="footer">
         <span class="todo-count"></span>
         <ul class="filters">
@@ -53,8 +79,8 @@
       </footer>
     </section>
   </div>
-  <script src="model.js"></script>
-  <script src="provider-localStorage.js"></script>
-  <script src="TodoMVC.js"></script>
+  <script src="js/model.js"></script>
+  <script src="js/provider-localStorage.js"></script>
+  <script src="js/TodoMVC.js"></script>
 </body>
 </html>
